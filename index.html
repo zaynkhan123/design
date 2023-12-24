@@ -1,0 +1,759 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>After-Exam</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css" rel="stylesheet" />
+</head>
+
+<style>
+  body {
+    background-color: #f1f1f1;
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+
+  html::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-item a {
+    position: relative;
+  }
+
+  .nav-item a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 85%;
+    width: 0%;
+    border-bottom: 1px solid #000;
+    transition: 600ms ease-in-out;
+  }
+
+  .nav-item a:hover::after {
+    width: 100%;
+    transition: 600ms ease-in-out;
+  }
+
+  .ibra {
+    -webkit-text-stroke: #5A6E79;
+    -webkit-text-stroke-width: .1rem;
+    -webkit-text-stroke-color: #333;
+  }
+
+  .onn {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-position: center;
+    background-size: cover;
+    border-radius: 30px;
+    background-image: url(https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+  }
+
+  .onn::after {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    content: "oST";
+    color: #fff;
+    font-size: 2.5rem;
+    font-family: voyage;
+    letter-spacing: 1rem;
+    text-transform: uppercase;
+    position: absolute;
+    bottom: 0%;
+    left: 0%;
+    width: 0%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.53);
+    transition: 800ms ease-out;
+  }
+
+  .onn:hover::after {
+    width: 100%;
+  }
+
+  .bade {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-position: center;
+    background-size: cover;
+    border-radius: 30px;
+    background-image: url(https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+  }
+
+  .bade::after {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    content: "ING";
+    color: #fff;
+    font-size: 2.5rem;
+    font-family: voyage;
+    letter-spacing: 1rem;
+    text-transform: uppercase;
+    position: absolute;
+    bottom: 0%;
+    left: 0%;
+    width: 100%;
+    height: 0%;
+    background: rgba(0, 0, 0, 0.53);
+    transition: 800ms ease-out;
+  }
+
+  .bade:hover::after {
+    height: 100%;
+  }
+
+  .mahir {
+    position: relative;
+    border-top-right-radius: 15rem;
+    border-top-left-radius: 15rem;
+    /* border-radius: 2rem; */
+    background-image: url(https://images.pexels.com/photos/1148955/pexels-photo-1148955.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+  }
+
+  .mahir::after {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    content: "..liges";
+    color: #fff;
+    font-size: 2.5rem;
+    font-family: voyage;
+    letter-spacing: 1rem;
+    text-transform: uppercase;
+    position: absolute;
+    top: -5%;
+    left: 0%;
+    width: 100%;
+    height: 0%;
+    background: rgba(0, 0, 0, 0.53);
+    transition: 800ms ease-out;
+  }
+
+  .mahir:hover::after {
+    height: 105%;
+  }
+
+  .papu::-webkit-scrollbar {
+    display: none;
+  }
+
+  .carousel-control-next-icon {
+    background-color: black;
+  }
+
+  .carousel-control-prev-icon {
+    background-color: black;
+  }
+
+  ul li a {
+    text-decoration: none;
+    color: #f2f2f2;
+    text-transform: capitalize;
+  }
+
+  .overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-color: rgb(36, 35, 35);
+  }
+
+  .loader {
+    display: block;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    width: 100px;
+    height: 200px;
+    margin: -75px 0 0 -75px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #9370DB;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+  }
+
+  .loader:before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #BA55D3;
+    -webkit-animation: spin 3s linear infinite;
+    animation: spin 3s linear infinite;
+  }
+
+  .loader:after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #FF00FF;
+    -webkit-animation: spin 1.5s linear infinite;
+    animation: spin 1.5s linear infinite;
+  }
+
+  @-webkit-keyframes spin {
+    0% {
+      -webkit-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+
+    100% {
+      -webkit-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes spin {
+    0% {
+      -webkit-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+
+    100% {
+      -webkit-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+</style>
+
+<body>
+  <div class="overlay">
+    <div class="loader">
+    </div>
+  </div>
+  <div class="container mt-3">
+    <nav class="navbar navbar-expand-lg bg-tranparent">
+      <div class="container-fluid">
+        <a class="navbar-brand fs-2 text-capitalize"
+          style="font-family: voyage; letter-spacing: .2rem; color: rgb(100, 47, 47); font-weight: 550;"
+          href="#">interior <sub class="fs-5" style="color: #43565D">{Des}</sub></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav m-auto mb-2 mb-lg-0 fs-5 gap-0 gap-lg-4 align-items-center" style="opacity: 0;">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#page-3">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#scroll">Provider</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-disabled="true">Contact</a>
+            </li>
+          </ul>
+          <form class="d-flex gap-2 align-items-center fs-5" role="search">
+            <input class="something baby text-center"
+              style="width: 0%; opacity: 0; transition: 0.6s ease-in-out; border-radius: 50px; border: none;"
+              type="text" placeholder="Search">
+            <a href="#" class="searching" style="text-decoration: none; color: #333;"><i class="ri-search-line"></i></a>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row flex-lg-nowrap">
+        <div class="zi order-lg-0 order-1 col-lg-4 mt-1 mt-lg-0 d-flex align-items-center justify-content-center"
+          style="margin-left: -50rem;">
+          <div class="design border border-secondary p-2 p-lg-5 text-light shadow"
+            style="background-color: #5A6E79; border-top-left-radius: 15px; border-bottom-right-radius: 15px; z-index: 999;">
+            <h1 class="text-capitalize text-lg-center text-start"
+              style="font-size: calc(100% + 2.5vw + 2vh); white-space: nowrap;">we help <span class="ibra"
+                style="font-family: voyage; font-weight: 600; color: rgb(133, 40, 40);">you</span><br><span
+                style="margin-left: 3rem;">make modern </span><br>
+              <span class="ibra"
+                style="font-family: voyage; font-weight: 600; color:  rgb(133, 40, 40); margin-left: 10rem;">interior .
+                .</span>
+            </h1>
+            <p class="text-center">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit cum ea fugiat
+              dolorem eligendi suscipit odit architecto corrupti aliquam? Debitis. —→ —→ —→
+            </p>
+          </div>
+        </div>
+        <div
+          class=" order-lg-1 order-0 col-lg-8 one mt-2 mt-lg-4 d-flex align-items-center justify-content-center so overflow-hidden"
+          style="opacity: 0;">
+          <div class="onn overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              class="img-fluid rounded-5 mt-2"
+              style="height: 35rem; width: 100%; object-fit: cover; opacity: 0; z-index: -1;" alt="">
+          </div>
+        </div>
+      </div>
+      <!-- page 2 -->
+      <div class="container mt-4 mt-lg-5 overflow-hidden">
+        <h2 class="text-grey text-capitalize call" style="font-size: calc(100% + 2vw + 2vh); margin-top: -10rem; ">
+          benefits you get <br><span style="margin-left: 7rem; color: #43565D">when using our </span>services . . .</h2>
+        <div class="row mt-3 mt-lg-5 g-3">
+          <div class="col-12 col-lg-4 text-center shadow">
+            <div class="d-flex gap-2">
+              <img src="https://clipground.com/images/premium-quality-logo-png-4.png" class="img-fluid w-25 h-25"
+                alt="">
+              <div class="one">
+                <h1 class="text-capitalize fs-1">best quality</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel sed nemo eius harum repellendus
+                  accusantium perferendis, dolor fugiat amet adipisci!</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-lg-4 text-center shadow">
+            <div class="d-flex">
+              <img
+                src="https://static.vecteezy.com/system/resources/previews/011/654/825/original/warranty-icon-vector-graphic-free-png.png"
+                class="img-fluid w-25 h-25" alt="">
+              <div class="three">
+                <h1>Warranty</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel sed nemo eius harum repellendus
+                  accusantium perferendis, dolor fugiat amet adipisci!</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-lg-4 text-center shadow">
+            <div class="d-flex">
+              <img src="https://thefoliprime.com/statics/img/free-shipping.png" class="img-fluid w-25 h-25" alt="">
+              <div class="two">
+                <h1>Free Shipping</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel sed nemo eius harum repellendus
+                  accusantium perferendis, dolor fugiat amet adipisci!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- page 3 -->
+      <div id="page-3" class="container mt-4 mt-lg-5">
+        <div class="row">
+          <div class="col-12 col-lg-4">
+            <div class="bade overflow-hidden">
+              <img
+                src="https://images.pexels.com/photos/2343468/pexels-photo-2343468.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                class="img-fluid rounded-5" alt="">
+            </div>
+          </div>
+          <div class="col-12 col-lg-8 justify-content-center d-flex flex-column mt-3 mt-lg-0">
+            <div class="uper justify-content-center align-items-center d-flex flex-column mt-3 mt-lg-0">
+              <h1 class="text-capitalize text-start text-start" style="font-size: calc(100% + 1.5vw + 2vh);">we provide
+                you the <br> <span style="color: rgb(156, 61, 61);">best experience .</span></h1>
+              <p class="w-75">Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro atque id magnam
+                consequuntur temporibus numquam earum voluptatum eligendi! Error sed exercitationem consequatur
+                deserunt. Perferendis mollitia blanditiis, sapiente quaerat optio debitis quas doloribus sed atque
+                beatae odit neque? Dolorem sit, dolorum quidem illo voluptates aspernatur maiores molestiae, laborum,
+                vero autem at?</p>
+            </div>
+            <div class="row gap-4 mt-3 d-flex justify-content-center align-items-center flex-lg-nowrap">
+              <div class="col-12 col-lg-3 shadow d-flex justify-content align-items-center flex-column">
+                <h1 style="color:  rgb(156, 61, 61);">20</h1>
+                <h5 class="text-capitalize" style="color: rgb(54, 52, 52)">awards</h5>
+                <h6 class="text-capitalize">experience</h6>
+                <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, adipisci!</p>
+              </div>
+              <div class="col-12 col-lg-3 shadow d-flex justify-content align-items-center flex-column">
+                <h1 style="color:  rgb(156, 61, 61);">85</h1>
+                <h5 class="text-capitalize" style="color: rgb(54, 52, 52);">awards</h5>
+                <h6 class="text-capitalize">goined</h6>
+                <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, adipisci!</p>
+              </div>
+              <div class="col-12 col-lg-3 shadow d-flex justify-content align-items-center flex-column">
+                <h1 style="color:  rgb(156, 61, 61);">537</h1>
+                <h5 class="text-capitalize" style="color: rgb(54, 52, 52)">function</h5>
+                <h6 class="text-capitalize">solid</h6>
+                <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, adipisci!</p>
+              </div>
+            </div>
+            <div class="btn mt-3">
+              <div class="btn btn-outline-secondary w-50">Learn more ———</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- customer reviews -->
+      <div class="container mt-3 mt-lg-5">
+        <h1 class="text-capitalize text-center" style="font-size: calc(100% + 2vw + 2vh);"> we are <span
+            style="color:  rgb(156, 61, 61);">customer </span> are <br> <span
+            style="color:  rgb(156, 61, 61); margin-left: 10rem;">. . . saying</span>
+        </h1>
+        <div class="row">
+          <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="row justify-content-center align-items-center gap-5 p-3">
+                  <div class="col-12 col-lg-4 d-flex flex-column justify-content-center align-items-start"
+                    style="background-color: #5A6E79; border-radius: 2rem;">
+                    <h1 style="color: #fff;" class="mx-3"><i class="ri-corner-down-right-line"></i></h1>
+                    <h2 style="color: #dadada;" class="mx-3">the results given are very satisfying .</h2>
+                    <p style="color: #d2d2d2;" class="mx-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                      Laudantium nesciunt consequuntur quisquam. Dignissimos assumenda modi, praesentium aut voluptas
+                      consequuntur alias, atque excepturi doloremque incidunt deserunt.</p>
+                    <div class="salman d-flex justify-content-center align-items-center mx-3 gap-3">
+                      <img src="https://th.bing.com/th/id/OIP.OYL7GQS_GlKWyxHkmsl94AHaJP?rs=1&pid=ImgDetMain"
+                        class="img-fluid" style="border-radius: 50%; width: 2rem; height: 2rem;" alt="">
+                      <h4 class="text-capitalize" style="color: rgb(42, 4, 4);">shabir</h4>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-4 d-flex flex-column justify-content-center align-items-start"
+                    style="background-color: #5A6E79; border-radius: 2rem;">
+                    <h1 style="color: #fff;" class="mx-3"><i class="ri-corner-down-right-line"></i></h1>
+                    <h2 style="color: #dadada;" class="mx-3">the service provided is very good & friendly .</h2>
+                    <p style="color: #d2d2d2;" class="mx-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                      Laudantium nesciunt consequuntur quisquam. Dignissimos assumenda modi, praesentium aut voluptas
+                      consequuntur alias, atque excepturi doloremque incidunt deserunt.</p>
+                    <div class="salman d-flex justify-content-center align-items-center mx-3 gap-3">
+                      <img
+                        src="https://th.bing.com/th/id/OIP.KBHDz_RuApnJpDGhBFlg-QHaJM?w=828&h=1028&rs=1&pid=ImgDetMain"
+                        class="img-fluid" style="border-radius: 50%; width: 2rem; height: 2rem;" alt="">
+                      <h4 class="text-capitalize" style="color: rgb(42, 4, 4);">alam . .</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="row justify-content-center align-items-center gap-5 p-3">
+                  <div class="col-12 col-lg-4 d-flex flex-column justify-content-center align-items-start"
+                    style="background-color: #5A6E79; border-radius: 2rem;">
+                    <h1 style="color: #fff;" class="mx-3"><i class="ri-corner-down-right-line"></i></h1>
+                    <h2 style="color: #dadada;" class="mx-3">the results given are very satisfying .</h2>
+                    <p style="color: #d2d2d2;" class="mx-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                      Laudantium nesciunt consequuntur quisquam. Dignissimos assumenda modi, praesentium aut voluptas
+                      consequuntur alias, atque excepturi doloremque incidunt deserunt.</p>
+                    <div class="salman d-flex justify-content-center align-items-center mx-3 gap-3">
+                      <img src="https://i.pinimg.com/originals/09/fd/24/09fd24ba0b3444206afc093366a658cd.jpg"
+                        class="img-fluid" style="border-radius: 50%; width: 2rem; height: 2rem;" alt="">
+                      <h4 class="text-capitalize" style="color: rgb(42, 4, 4);">Doggiban</h4>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-4 d-flex flex-column justify-content-center align-items-start"
+                    style="background-color: #5A6E79; border-radius: 2rem;">
+                    <h1 style="color: #fff;" class="mx-3"><i class="ri-corner-down-right-line"></i></h1>
+                    <h2 style="color: #dadada;" class="mx-3">the service provided is very good & friendly .</h2>
+                    <p style="color: #d2d2d2;" class="mx-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                      Laudantium nesciunt consequuntur quisquam. Dignissimos assumenda modi, praesentium aut voluptas
+                      consequuntur alias, atque excepturi doloremque incidunt deserunt.</p>
+                    <div class="salman d-flex justify-content-center align-items-center mx-3 gap-3">
+                      <img
+                        src="https://th.bing.com/th/id/R.501b02ada5749926c2767ed014add038?rik=SyWpEsvG44meyw&riu=http%3a%2f%2fmenshairstyle.funtouzy.com%2fwp-content%2fuploads%2f2019%2f10%2fGentleman-Haircut-Side-Swept.jpg&ehk=VkGhtFZyyr2nelgyoVp1gf0zOrL%2f8fN7vM7v34eC1os%3d&risl=&pid=ImgRaw&r=0"
+                        class="img-fluid" style="border-radius: 50%; width: 2rem; height: 2rem;" alt="">
+                      <h4 class="text-capitalize" style="color: rgb(42, 4, 4);">leonadeo</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="row justify-content-center align-items-center gap-5 p-3">
+                  <div class="col-12 col-lg-4 d-flex flex-column justify-content-center align-items-start"
+                    style="background-color: #5A6E79; border-radius: 2rem;">
+                    <h1 style="color: #fff;" class="mx-3"><i class="ri-corner-down-right-line"></i></h1>
+                    <h2 style="color: #dadada;" class="mx-3">the results given are very satisfying .</h2>
+                    <p style="color: #d2d2d2;" class="mx-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                      Laudantium nesciunt consequuntur quisquam. Dignissimos assumenda modi, praesentium aut voluptas
+                      consequuntur alias, atque excepturi doloremque incidunt deserunt.</p>
+                    <div class="salman d-flex justify-content-center align-items-center mx-3 gap-3">
+                      <img src="https://nextluxury.com/wp-content/uploads/great-grey-suit-styles-for-men.jpg"
+                        class="img-fluid" style="border-radius: 50%; width: 2rem; height: 2rem;" alt="">
+                      <h4 class="text-capitalize" style="color: rgb(42, 4, 4);">mariano di costa</h4>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-4 d-flex flex-column justify-content-center align-items-start"
+                    style="background-color: #5A6E79; border-radius: 2rem;">
+                    <h1 style="color: #fff;" class="mx-3"><i class="ri-corner-down-right-line"></i></h1>
+                    <h2 style="color: #dadada;" class="mx-3">the service provided is very good & friendly .</h2>
+                    <p style="color: #d2d2d2;" class="mx-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                      Laudantium nesciunt consequuntur quisquam. Dignissimos assumenda modi, praesentium aut voluptas
+                      consequuntur alias, atque excepturi doloremque incidunt deserunt.</p>
+                    <div class="salman d-flex justify-content-center align-items-center mx-3 gap-3">
+                      <img src="https://i.pinimg.com/564x/26/e8/5f/26e85fe5643a09bf05886c6aeb11f541.jpg"
+                        class="img-fluid" style="border-radius: 50%; width: 2rem; height: 2rem; object-fit: cover;"
+                        alt="">
+                      <h4 class="text-capitalize" style="color: rgb(42, 4, 4);">kamran</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+              data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+              data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- scroll -->
+      <div id="scroll" class="container mt-3 mt-lg-5 mb-5">
+        <h2 class="text-grey text-capitalize mt-0 mt-lg-5" style="font-size: calc(100% + 2vw + 2vh); ">provide
+          you<br><span style="margin-left: 2rem; color: #43565D">satisfying amazing </span>working . . .</h2>
+        <div class="row mt-2 mt-lg-4 gap-3 flex-lg-nowrap">
+          <div class="col-12 col-lg-8 order-lg-0 order-1 d-flex justify-content-start overflow-hidden">
+            <div class="row flex-nowrap d-flex justify-content-start align-items-end papu overflow-auto">
+              <div class="col-12 col-lg-4">
+                <div class="card shadow p-1">
+                  <img src="https://cdn.pixabay.com/photo/2022/06/10/14/21/castle-7254622_1280.jpg"
+                    class="img-thumbnail" style="height: 350px;" alt="">
+                  <h4 class="text-center text-uppercase fs-5">darbar</h4>
+                  <p class="text-center">Lorem ipsum dolor sit amet.</p>
+                  <div class="d-flex justify-content-center align-items-center gap-3 ">
+                    <div class="btn btn-outline-secondary">view</div>
+                    <div class="btn btn-outline-warning">masor</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-lg-4">
+                <div class="card shadow p-1">
+                  <img src="https://cdn.pixabay.com/photo/2021/04/22/18/50/frames-6199828_1280.jpg"
+                    class="img-thumbnail" style="height: 350px;" alt="">
+                  <h4 class="text-center text-uppercase fs-5">room design</h4>
+                  <p class="text-center">Lorem ipsum dolor sit amet.</p>
+                  <div class="d-flex justify-content-center align-items-center gap-3 ">
+                    <div class="btn btn-outline-secondary">view</div>
+                    <div class="btn btn-outline-warning">masor</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-lg-4">
+                <div class="card shadow p-1">
+                  <img src="https://cdn.pixabay.com/photo/2018/01/22/08/55/modern-minimalist-kitchen-3098477_1280.jpg"
+                    class="img-thumbnail" style="height: 350px;" alt="">
+                  <h4 class="text-center text-uppercase fs-5">kitchen</h4>
+                  <p class="text-center">Lorem ipsum dolor sit amet.</p>
+                  <div class="d-flex justify-content-center align-items-center gap-3 ">
+                    <div class="btn btn-outline-secondary">view</div>
+                    <div class="btn btn-outline-warning">masor</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-lg-4">
+                <div class="card shadow p-1">
+                  <img src="https://cdn.pixabay.com/photo/2015/03/07/16/56/home-663243_1280.jpg" class="img-thumbnail"
+                    style="height: 350px;" alt="">
+                  <h4 class="text-center text-uppercase fs-5">design acx</h4>
+                  <p class="text-center">Lorem ipsum dolor sit amet.</p>
+                  <div class="d-flex justify-content-center align-items-center gap-3 ">
+                    <div class="btn btn-outline-secondary">view</div>
+                    <div class="btn btn-outline-warning">masor</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-lg-4">
+                <div class="card shadow p-1">
+                  <img src="https://cdn.pixabay.com/photo/2017/06/29/07/32/furniture-2453307_1280.jpg"
+                    class="img-thumbnail" style="height: 350px;" alt="">
+                  <h4 class="text-center text-uppercase fs-5">furniture</h4>
+                  <p class="text-center">Lorem ipsum dolor sit amet.</p>
+                  <div class="d-flex justify-content-center align-items-center gap-3 ">
+                    <div class="btn btn-outline-secondary">view</div>
+                    <div class="btn btn-outline-warning">masor</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-lg-4 order-lg-1 order-0">
+            <div class="mahir overflow-hidden">
+              <img
+                src="https://images.pexels.com/photos/1148955/pexels-photo-1148955.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                class="img-fluid rounded-5" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- footer -->
+
+      <div class="container mb-1 rounded-1" style="background-color: #43565D;">
+        <div class="row p-2 p-lg-5">
+          <div class="col-12 col-lg-4">
+            <h1 class="text-capitalize fs-1 mx-2"
+              style="font-weight: 550; font-family: voyage; letter-spacing: .2rem; color: rgb(100, 47, 47);">interior
+              <sub style="color: #dadada" class="fs-3">{des}</sub>
+            </h1>
+            <p class="mt-4 mx-2 text-start">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam beatae
+              assumenda obcaecati minus iusto delectus officiis voluptatibus saepe sit culpa ipsa, ullam incidunt.
+              Doloribus, placeat.</p>
+          </div>
+          <div class="col-12 col-lg-8">
+            <div class="row mt-2 mt-lg-4 border-bottom">
+              <div class="col-4 col-lg-3 d-flex justify-content-center align-items-center flex-column">
+                <h5 style="color: #dadada;">About</h5>
+                <ul>
+                  <li><a href="">about us</a></li>
+                  <li><a href="">Feature</a></li>
+                  <li><a href="">name</a></li>
+                  <li><a href="">career</a></li>
+                </ul>
+              </div>
+              <div class="col-4 col-lg-3 d-flex justify-content-center align-items-center flex-column">
+                <h5 class="text-capitalize " style="color: #dadada;">company</h5>
+                <ul>
+                  <li><a href="">Our Hours</a></li>
+                  <li><a href="">FAQ</a></li>
+                  <li><a href="">name</a></li>
+                  <li><a href="">IBMQ</a></li>
+                </ul>
+              </div>
+              <div class="col-4 col-lg-3">
+                <h5 class="text-capitalize mx-2" style="color: #dadada;">Support</h5>
+                <ul>
+                  <li><a href="">Account</a></li>
+                  <li><a href="">support career</a></li>
+                  <li><a href="">IBMQ</a></li>
+                  <li><a href="">mars</a></li>
+                </ul>
+              </div>
+              <div class="col-12 col-lg-3 mt-2 mt-lg-0">
+                <h5 class="text-center fs-4" style="color: #dadada;">Get in touch</h5>
+                <p class="text-center">Lorem ipsum dolor sit amet.</p>
+                <ul class="mx-3 mx-lg-0">
+                  <a href="" class="mx-4 mx-lg-2 fs-5" style="text-decoration: none; color:#222"><i
+                      class="ri-instagram-line"></i></a>
+                  <a href="" class="mx-4 mx-lg-2 fs-5" style="text-decoration: none; color:#222"><i
+                      class="ri-facebook-line"></i></a>
+                  <a href="" class="mx-4 mx-lg-2 fs-5" style="text-decoration: none; color:#222"><i
+                      class="ri-twitter-line"></i></a>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"
+      integrity="sha512-cOH8ndwGgPo+K7pTvMrqYbmI8u8k6Sho3js0gOqVWTmQMlLIi6TbqGWRTpf1ga8ci9H3iPsvDLr4X7xwhC/+DQ=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"
+      integrity="sha512-AMl4wfwAmDM1lsQvVBBRHYENn1FR8cfOTpt8QVbb/P55mYOdahHD4LmHM1W55pNe3j/3od8ELzPf/8eNkkjISQ=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"></script>
+
+    <script>
+      // function init() {
+      //   gsap.registerPlugin(ScrollTrigger);
+
+      //   // Using Locomotive Scroll from Locomotive https://github.com/locomotivemtl/locomotive-scroll
+
+      //   const locoScroll = new LocomotiveScroll({
+      //     el: document.querySelector("#main"),
+      //     smooth: true
+      //   });
+      //   // each time Locomotive Scroll updates, tell ScrollTrigger to update too (sync positioning)
+      //   locoScroll.on("scroll", ScrollTrigger.update);
+
+      //   // tell ScrollTrigger to use these proxy methods for the "#main" element since Locomotive Scroll is hijacking things
+      //   ScrollTrigger.scrollerProxy("#main", {
+      //     scrollTop(value) {
+      //       return arguments.length ? locoScroll.scrollTo(value, 0, 0) : locoScroll.scroll.instance.scroll.y;
+      //     }, // we don't have to define a scrollLeft because we're only scrolling vertically.
+      //     getBoundingClientRect() {
+      //       return {
+      //         top: 0,
+      //         left: 0,
+      //         width: window.innerWidth,
+      //         height: window.innerHeight
+      //       };
+      //     },
+      //     // LocomotiveScroll handles things completely differently on mobile devices - it doesn't even transform the container at all! So to get the correct behavior and avoid jitters, we should pin things with position: fixed on mobile. We sense it by checking to see if there's a transform applied to the container (the LocomotiveScroll-controlled element).
+      //     pinType: document.querySelector("#main").style.transform ? "transform" : "fixed"
+      //   });
+
+
+
+      //   // each time the window updates, we should refresh ScrollTrigger and then update LocomotiveScroll. 
+      //   ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
+
+      //   // after everything is set up, refresh() ScrollTrigger and update LocomotiveScroll because padding may have been added for pinning, etc.
+      //   ScrollTrigger.refresh();
+
+
+
+
+      // }
+
+      // init()
+      var baby = document.querySelector(".baby")
+      var searching = document.querySelector(".searching").addEventListener("click", function () {
+        baby.style.width = `100%`
+        baby.style.opacity = `1`
+        console.log("kam")
+      })
+
+      var t1 = gsap.timeline()
+
+      t1.to(".overlay", {
+        top: "-100%",
+        delay: 1.2,
+        Transition: .5
+      })
+
+        .to(".navbar-nav", {
+          opacity: 1,
+          Transition: .2
+          // delay: 1,
+          // scrub:1
+        })
+
+      var t2 = gsap.timeline()
+
+      t2.to(".zi", {
+        marginLeft: "0",
+        delay: 1.2
+      })
+        .to(".so", {
+          opacity: 1,
+          Transition: .3
+        })
+
+      gsap.to(".call", {
+        marginTop: `0rem`,
+        Transition: .3,
+        scrollTrigger: {
+          scroller: `html`,
+          trigger: `.call`,
+          start: "1%",
+          end: `1%`,
+          scrub: 2,
+          // markers: true
+        }
+      })
+    </script>
+</body>
+
+</html>
